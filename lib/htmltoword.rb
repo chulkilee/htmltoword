@@ -1,6 +1,4 @@
 # encoding: UTF-8
-require 'action_controller'
-require 'action_view'
 require 'nokogiri'
 require 'zip'
 require 'htmltoword/configuration'
@@ -23,4 +21,7 @@ end
 require 'htmltoword/version'
 require 'htmltoword/htmltoword_helper'
 require 'htmltoword/document'
-require 'htmltoword/action_controller'
+
+if defined?(ActionController)
+  require 'htmltoword/action_controller'
+end

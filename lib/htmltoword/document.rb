@@ -69,10 +69,10 @@ module Htmltoword
     end
 
     def replace_file html, file_name=Document.doc_xml_file
-      html = html.presence || '<body></body>'
+      html = '<body></body>' unless html && !html.empty?
       source = Nokogiri::HTML(html.gsub(/>\s+</, "><"))
       xslt = Nokogiri::XSLT( File.read(Document.default_xslt_template) )
-      source = xslt.transform( source ) unless (source/"/html").blank?
+      source = xslt.transform( source ) if source/"/html"
       @replaceable_files[file_name] = source.to_s
     end
 
